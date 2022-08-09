@@ -49,5 +49,12 @@ private void updateData(Livro newObj, Livro obj) {
 	newObj.setTexto(obj.getTexto());
 	
 }
+// metodo CREATE
+public Livro create(Integer id, Livro obj) {
+	obj.setId(null);
+	Categoria cat = categoriaService.findById(id);
+	obj.setCategoria(cat);
+	return repository.save(obj);
+}
 	
 }
