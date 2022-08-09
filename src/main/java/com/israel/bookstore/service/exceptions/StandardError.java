@@ -8,7 +8,6 @@ public class StandardError {
 
 	public StandardError() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public StandardError(Long timestamp, Integer status, String error) {
