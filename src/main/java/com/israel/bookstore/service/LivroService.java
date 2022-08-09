@@ -50,11 +50,16 @@ private void updateData(Livro newObj, Livro obj) {
 	
 }
 // metodo CREATE
-public Livro create(Integer id, Livro obj) {
+public Livro create(Integer id_cat, Livro obj) {
 	obj.setId(null);
-	Categoria cat = categoriaService.findById(id);
+	Categoria cat = categoriaService.findById(id_cat);
 	obj.setCategoria(cat);
 	return repository.save(obj);
+}
+
+public void delete(Integer id) {
+	Livro obj = findById(id); //ver se existe
+	repository.delete(obj);
 }
 	
 }
