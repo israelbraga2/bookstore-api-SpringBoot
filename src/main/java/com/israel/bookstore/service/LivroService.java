@@ -25,7 +25,7 @@ public class LivroService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
 	
-// metodo para qdo listar livros apenas retorna id e titulo
+// metodo listar todos os livros pela categoria
 	
 	public List<Livro>findall(){
 		return repository.findAll();

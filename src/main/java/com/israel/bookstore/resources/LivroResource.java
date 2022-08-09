@@ -28,7 +28,7 @@ public class LivroResource {
 		
 	}
 	
-	//metodo para qdo listar livros apenas retorna id e titulo
+	// metodo listar todos os livros pela categoria
 	
 	@GetMapping(value="categoria/{id}")
 	public ResponseEntity<List<LivroDTO>>findAllByCategoria(@PathVariable Integer id){
