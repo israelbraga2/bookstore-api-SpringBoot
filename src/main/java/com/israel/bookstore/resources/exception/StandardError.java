@@ -1,4 +1,4 @@
-package com.israel.bookstore.service.exceptions;
+package com.israel.bookstore.resources.exception;
 
 public class StandardError {
 
