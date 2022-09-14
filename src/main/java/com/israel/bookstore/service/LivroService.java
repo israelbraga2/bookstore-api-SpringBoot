@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.israel.bookstore.domain.Categoria;
 import com.israel.bookstore.domain.Livro;
 import com.israel.bookstore.repositories.LivroRepository;
+import com.israel.bookstore.service.exceptions.ObjectNotFoundException;
 
 @Service
 public class LivroService {
@@ -21,17 +22,18 @@ public class LivroService {
 	
 	public Livro findById(Integer id) {
 		Optional<Livro> obj = repository.findById(id);
-		return obj.orElseThrow(() -> new com.israel.bookstore.service.exceptions.ObjectNotFoundException (
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+			"Objeto não encontrado! Id: " + id + ", Tipo: " + Livro.class.getName()));
+		//com.israel.bookstore.service.exceptions.ObjectNotFoundException 
 	}
 	
 // metodo listar todos os livros pela categoria
 	
-	public List<Livro>findall(){
-		return repository.findAll();
-	}
+	//public List<Livro>findAll(){
+		//return repository.findAll();
+	//}
 	
-	public List<Livro> findAllByCategory(Integer id) {
+	public List<Livro> findAll(Integer id) {
 		Categoria obj = categoriaService.findById(id);
 		return obj.getLivros();
 	}
@@ -50,9 +52,9 @@ private void updateData(Livro newObj, Livro obj) {
 	
 }
 // metodo CREATE
-public Livro create(Integer id_cat, Livro obj) {
+public Livro create(Integer id, Livro obj) {
 	obj.setId(null);
-	Categoria cat = categoriaService.findById(id_cat);
+	Categoria cat = categoriaService.findById(id);
 	obj.setCategoria(cat);
 	return repository.save(obj);
 }

@@ -42,9 +42,9 @@ public class LivroResource {
 	
 	// metodo listar todos os livros pela categoria
 	
-	@GetMapping(value="categoria/{id}")
-	public ResponseEntity<List<LivroDTO>>findAllByCategoria(@PathVariable Integer id){
-		List<Livro>list = service.findAllByCategory(id);
+	@GetMapping
+	public ResponseEntity<List<LivroDTO>>findAll(@RequestParam(value = "categoria", defaultValue = "0") Integer id){
+		List<Livro>list = service.findAll(id);
 		List<LivroDTO> listDTO = list.stream().map(obj -> new LivroDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
@@ -64,21 +64,10 @@ public class LivroResource {
 		Livro newObj = service.update(id, obj);
 		return ResponseEntity.ok().body(newObj);
 	}
-	
-	//metodo para CREATE implementado no curso que não deu certo
-	//@PostMapping
-	//public ResponseEntity<Livro> create(@RequestParam(value= "categoria", defaultValue = "0") Integer id_cat, @RequestBody Livro obj){
-		//Livro newObj = service.create(id_cat, obj);
-		//URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(newObj.getId()).toUri();
-		//return ResponseEntity.created(uri).build();
-	//}
-	
-	//metodo CREATE
-	
-	@PostMapping(value = "categoria/{id}")
-	public ResponseEntity<Livro> create(@RequestParam (value= "categoria", defaultValue="0")Integer id, @Valid @RequestBody Livro obj){
+
+	@PostMapping
+	public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Integer id, @RequestBody Livro obj ){
 		Livro newObj = service.create(id, obj);
-		//return ResponseEntity.ok().body(newObj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(newObj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
