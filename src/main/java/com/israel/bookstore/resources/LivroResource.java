@@ -48,6 +48,9 @@ public class LivroResource {
 		List<LivroDTO> listDTO = list.stream().map(obj -> new LivroDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
+
+	
+	
 	
 	 // metodo UPDATE p/ atualizar tudo
 	

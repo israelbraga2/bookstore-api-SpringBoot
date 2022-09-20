@@ -31,6 +31,7 @@ public class CategoriaResouces {
 	@Autowired
 	private CategoriaService service;
 
+
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Categoria> findById(@PathVariable Integer id) {
 		Categoria obj = service.findById(id);
